@@ -41,19 +41,16 @@ public class UserService {
         }
 
         // 사용자 ROLE 확인
-        UserRoleEnum role = UserRoleEnum.STAFF;
-//        if (requestDto.isAdmin()) {
-//            // 관리자 권한을 요청한 경우
-//            // ADMIN_TOKEN -> 일반 사용자인지 관리자 인지를 구분하기 위해 만든것
-//            String ADMIN_TOKEN = "qwertyuiop";
-//            if (!ADMIN_TOKEN.equals(requestDto.getAdminToken())) {
-//                throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능합니다.");
-//            }
-//            if (!"커리큘럼".equals(department) && !"개발".equals(department)) {
-//                throw new IllegalArgumentException("MANAGER 권한은 커리큘럼, 개발 부서만 부여 받을 수 있습니다.");
-//            }
-//            role = UserRoleEnum.MANAGER; // 커리큘럼 또는 개발 부서일 경우 MANAGER 권한 부여
-//        }
+        // 부서명에 따라 역할을 할당
+        UserRoleEnum role; // 역할을 저장할 변수 선언
+
+        // 커리큘럼 또는 개발 부서인 경우 MANAGER 권한 부여
+        if ("커리큘럼".equals(department) || "개발".equals(department)) {
+            role = UserRoleEnum.MANAGER;
+        } else {
+            // 그 외의 경우는 STAFF 권한 부여
+            role = UserRoleEnum.STAFF;
+        }
 
         // 사용자 등록
         User user = new User(username, password, email, department, role);
