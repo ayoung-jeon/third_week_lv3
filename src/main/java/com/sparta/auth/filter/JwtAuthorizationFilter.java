@@ -1,5 +1,6 @@
-package com.sparta.auth.jwt;
+package com.sparta.auth.filter;
 
+import com.sparta.auth.jwt.JwtUtil;
 import com.sparta.auth.security.UserDetailsServiceImpl;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
@@ -21,7 +22,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.net.URLDecoder;
 
-
+@Slf4j(topic = "인가 확인")
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthorizationFilter.class);
@@ -44,8 +45,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         }
 
         try {
-            if (req.getHeader(JwtUtil.ACCESSTOKEN_HEADER) == null){
-                throw new AuthenticationCredentialsNotFoundException("토큰이 없습니다.");}
+            if (req.getHeader(JwtUtil.ACCESSTOKEN_HEADER) == null)
+                throw new AuthenticationCredentialsNotFoundException("토큰이 없습니다.");
             String token = URLDecoder.decode(req.getHeader(JwtUtil.ACCESSTOKEN_HEADER), "UTF-8");
 
             if (StringUtils.hasText(token) && token != null) {
