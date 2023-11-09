@@ -41,11 +41,16 @@ public class TutorService {
         }
 
         // 저장 성공 로그
-        log.info("Tutor registered successfully with id: {}", savedTutor.getId());
+        log.info("Tutor registered successfully with id: {}", savedTutor.getTutorId());
 
         // TutorResponseDto 생성 및 반환
         return new TutorResponseDto(savedTutor);
     }
 
-
+    // 선택한 강사 조회
+    public TutorResponseDto getTutor(Long tutorId) {
+        Tutor tutor = tutorRepository.findById(tutorId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 강사는 없습니다."));
+        return new TutorResponseDto(tutor);
+    }
 }

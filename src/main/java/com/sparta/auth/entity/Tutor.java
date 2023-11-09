@@ -14,7 +14,7 @@ import lombok.*;
 public class Tutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long tutorId;
 
     @Column(nullable = false, unique = true) // unique = true -> 중복을 막는다
     private String tutorName;

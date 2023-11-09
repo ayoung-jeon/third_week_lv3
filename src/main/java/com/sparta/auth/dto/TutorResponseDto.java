@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Getter
 public class TutorResponseDto {
-    private Long id;
+    private Long tutorId;
     private String tutorName;
     private Long experienceYears;
     private String company;
@@ -15,7 +15,7 @@ public class TutorResponseDto {
     private String bio;
 
     public TutorResponseDto(Tutor tutor) {
-        this.id = tutor.getId();
+        this.tutorId = tutor.getTutorId();
         this.tutorName = tutor.getTutorName();
         this.experienceYears = tutor.getExperienceYears();
         this.company = tutor.getCompany();

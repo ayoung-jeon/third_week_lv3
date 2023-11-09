@@ -33,6 +33,14 @@ public class TutorController {
             return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 
+    // 강사 조회
+    @GetMapping("/tutor/{tutorId}")
+    @PreAuthorize("hasAuthority('ROLE_STAFF') or hasAuthority('ROLE_MANAGER')")
+    public TutorResponseDto getTutor(@PathVariable Long tutorId) {
+        return tutorService.getTutor(tutorId);
+    }
+
+
 //    @Secured(UserRoleEnum.Authority.MANAGER) // 관리자용
 //    @GetMapping("/products/secured")
 //    public String getProductsByAdmin(@AuthenticationPrincipal UserDetailsImpl userDetails) {
@@ -42,11 +50,5 @@ public class TutorController {
 //        }
 //
 //        return "redirect:/";
-//    }
-//
-//    @PostMapping("/validation")
-//    @ResponseBody
-//    public ProductRequestDto testValid(@RequestBody @Valid ProductRequestDto requestDto) {
-//        return requestDto;
 //    }
 }
