@@ -40,15 +40,13 @@ public class TutorController {
         return tutorService.getTutor(tutorId);
     }
 
+    @PutMapping("/tutor/{tutorId}")
+    @PreAuthorize("hasAuthority('ROLE_MANAGER')")
+    public ResponseEntity<TutorResponseDto> updateTutor(
+            @PathVariable Long tutorId,
+            @Valid @RequestBody TutorRequestDto requestDto) {
 
-//    @Secured(UserRoleEnum.Authority.MANAGER) // 관리자용
-//    @GetMapping("/products/secured")
-//    public String getProductsByAdmin(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-//        System.out.println("userDetails.getUsername() = " + userDetails.getUsername());
-//        for (GrantedAuthority authority : userDetails.getAuthorities()) {
-//            System.out.println("authority.getAuthority() = " + authority.getAuthority());
-//        }
-//
-//        return "redirect:/";
-//    }
+        TutorResponseDto responseDto = tutorService.updateTutor(tutorId, requestDto);
+        return ResponseEntity.ok(responseDto);
+    }
 }

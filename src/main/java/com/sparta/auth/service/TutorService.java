@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -52,5 +53,25 @@ public class TutorService {
         Tutor tutor = tutorRepository.findById(tutorId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 강사는 없습니다."));
         return new TutorResponseDto(tutor);
+    }
+
+    // 강사 정보 수정
+    @Transactional
+    public TutorResponseDto updateTutor(Long tutorId, TutorRequestDto requestDto) {
+        // 기존 Tutor 조회
+        Tutor tutor = tutorRepository.findById(tutorId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 강사는 없습니다."));
+
+        // 수정 사항 반영
+        tutor.setExperienceYears(requestDto.getExperienceYears());
+        tutor.setCompany(requestDto.getCompany());
+        tutor.setPhoneNumber(requestDto.getPhoneNumber());
+        tutor.setBio(requestDto.getBio());
+
+        // 업데이트된 Tutor 저장
+        Tutor updatedTutor = tutorRepository.save(tutor);
+
+        // 업데이트된 정보로 ResponseDto 생성
+        return new TutorResponseDto(updatedTutor);
     }
 }
