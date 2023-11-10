@@ -21,7 +21,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.nio.file.AccessDeniedException;
 
 @Slf4j(topic = "인가 확인")
 public class JwtAuthorizationFilter extends OncePerRequestFilter {

@@ -2,10 +2,8 @@ package com.sparta.auth.dto;
 
 import com.sparta.auth.entity.Lecture;
 import com.sparta.auth.entity.LectureEnum;
-import com.sparta.auth.entity.Tutor;
 import lombok.Getter;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter

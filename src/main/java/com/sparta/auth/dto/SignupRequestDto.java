@@ -1,8 +1,6 @@
 package com.sparta.auth.dto;
 
 
-import com.sparta.auth.entity.User;
-import com.sparta.auth.entity.UserRoleEnum;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;

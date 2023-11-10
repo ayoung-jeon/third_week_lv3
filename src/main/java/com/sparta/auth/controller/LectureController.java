@@ -2,11 +2,8 @@ package com.sparta.auth.controller;
 
 import com.sparta.auth.dto.LectureRequestDto;
 import com.sparta.auth.dto.LectureResponseDto;
-import com.sparta.auth.dto.TutorRequestDto;
-import com.sparta.auth.dto.TutorResponseDto;
 import com.sparta.auth.entity.LectureEnum;
 import com.sparta.auth.service.LectureService;
-import com.sparta.auth.service.TutorService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

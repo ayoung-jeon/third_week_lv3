@@ -4,7 +4,6 @@ import com.sparta.auth.dto.LectureRequestDto;
 import com.sparta.auth.dto.LectureResponseDto;
 import com.sparta.auth.entity.Lecture;
 import com.sparta.auth.entity.LectureEnum;
-import com.sparta.auth.entity.Tutor;
 import com.sparta.auth.repository.LectureRepository;
 import com.sparta.auth.repository.TutorRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.stream.Collectors;

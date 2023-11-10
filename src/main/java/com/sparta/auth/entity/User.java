@@ -1,6 +1,5 @@
 package com.sparta.auth.entity;
 
-import com.sparta.auth.dto.SignupRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 

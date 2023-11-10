@@ -4,8 +4,6 @@ import com.sparta.auth.entity.Lecture;
 import com.sparta.auth.entity.Tutor;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Getter
 public class TutorResponseDto {
     private Long tutorId;

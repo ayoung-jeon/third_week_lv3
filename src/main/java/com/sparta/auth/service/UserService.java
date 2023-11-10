@@ -3,13 +3,11 @@ package com.sparta.auth.service;
 import com.sparta.auth.dto.SignupRequestDto;
 import com.sparta.auth.entity.User;
 import com.sparta.auth.entity.UserRoleEnum;
-import com.sparta.auth.jwt.JwtUtil;
 import com.sparta.auth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 

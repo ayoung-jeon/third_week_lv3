@@ -1,6 +1,5 @@
 package com.sparta.auth.controller;
 
-import com.sparta.auth.dto.LectureResponseDto;
 import com.sparta.auth.dto.TutorRequestDto;
 import com.sparta.auth.dto.TutorResponseDto;
 import com.sparta.auth.service.TutorService;
@@ -9,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")

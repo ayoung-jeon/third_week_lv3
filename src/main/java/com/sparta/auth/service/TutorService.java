@@ -1,22 +1,17 @@
 package com.sparta.auth.service;
 
 
-import com.sparta.auth.dto.LectureResponseDto;
 import com.sparta.auth.dto.TutorRequestDto;
 import com.sparta.auth.dto.TutorResponseDto;
 import com.sparta.auth.entity.Lecture;
 import com.sparta.auth.entity.Tutor;
 import com.sparta.auth.repository.LectureRepository;
 import com.sparta.auth.repository.TutorRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
