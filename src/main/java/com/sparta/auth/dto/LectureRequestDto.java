@@ -16,7 +16,7 @@ public class LectureRequestDto {
     private String title;
 
     @DecimalMin(value = "0", inclusive = false)
-    private BigDecimal price;
+    private Long price;
 
     @NotBlank
     private String description;
@@ -24,6 +24,6 @@ public class LectureRequestDto {
     @NonNull
     private LectureEnum category;
 
-    @NonNull
-    private Long tutorId;
+//    @NonNull
+//    private Long tutorId;
 }

@@ -35,9 +35,9 @@ public class LectureService {
             throw new IllegalStateException("Lecture with title " + requestDto.getTitle() + " already exists");
         }
 
-        // Tutor 엔티티 조회
-        Tutor tutor = tutorRepository.findById(requestDto.getTutorId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid tutor ID: " + requestDto.getTutorId()));
+//        // Tutor 엔티티 조회
+//        Tutor tutor = tutorRepository.findById(requestDto.getTutorId())
+//                .orElseThrow(() -> new IllegalArgumentException("Invalid tutor ID: " + requestDto.getTutorId()));
 
         // category 유효성 검사
         // Enum 값 검증
@@ -46,7 +46,7 @@ public class LectureService {
         }
 
         // Lecture 엔티티 생성
-        Lecture lecture = new Lecture(requestDto, tutor);
+        Lecture lecture = new Lecture(requestDto);
         Lecture savedLecture;
 
         // 저장 시도

@@ -1,5 +1,6 @@
 package com.sparta.auth.dto;
 
+import com.sparta.auth.entity.Lecture;
 import com.sparta.auth.entity.Tutor;
 import lombok.Getter;
 
@@ -13,6 +14,7 @@ public class TutorResponseDto {
     private String company;
     private Long phoneNumber;
     private String bio;
+    private Lecture lecture;
 
     public TutorResponseDto(Tutor tutor) {
         this.tutorId = tutor.getTutorId();
@@ -21,5 +23,6 @@ public class TutorResponseDto {
         this.company = tutor.getCompany();
         this.phoneNumber = tutor.getPhoneNumber();
         this.bio = tutor.getBio();
+        this.lecture = tutor.getLecture();
     }
 }

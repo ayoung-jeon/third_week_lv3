@@ -1,22 +1,30 @@
 package com.sparta.auth.service;
 
 
+import com.sparta.auth.dto.LectureResponseDto;
 import com.sparta.auth.dto.TutorRequestDto;
 import com.sparta.auth.dto.TutorResponseDto;
+import com.sparta.auth.entity.Lecture;
 import com.sparta.auth.entity.Tutor;
+import com.sparta.auth.repository.LectureRepository;
 import com.sparta.auth.repository.TutorRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class TutorService {
 
-    private  final TutorRepository tutorRepository;
+    private final TutorRepository tutorRepository;
+    private final LectureRepository lectureRepository;
 
     public TutorResponseDto registerTutor(TutorRequestDto requestDto) {
         // 로그 남기기
@@ -28,8 +36,13 @@ public class TutorService {
             log.warn("Tutor registration failed: Duplicate tutor name {}", requestDto.getTutorName());
             throw new IllegalStateException("Tutor with name " + requestDto.getTutorName() + " already exists");
         }
+
+        // Lecture 엔티티 조회
+        Lecture lecture = lectureRepository.findById(requestDto.getLectureId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid tutor ID: " + requestDto.getLectureId()));
+
         // Tutor 엔티티 생성
-        Tutor tutor = new Tutor(requestDto);
+        Tutor tutor = new Tutor(requestDto, lecture);
 
         // 저장 시도
         Tutor savedTutor;
@@ -54,6 +67,18 @@ public class TutorService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 강사는 없습니다."));
         return new TutorResponseDto(tutor);
     }
+
+//    public List<LectureResponseDto> getLecturesByTutor(Long tutorId) {
+//        // 강사 존재 여부 확인
+//        tutorRepository.findById(tutorId)
+//                .orElseThrow(() -> new EntityNotFoundException("Tutor not found with id: " + tutorId));
+//
+//        // 강사의 강의 목록 조회 및 DTO 변환
+//        return lectureRepository.findByTutorIdOrderByCreatedAtDesc(tutorId)
+//                .stream()
+//                .map(LectureResponseDto::new)
+//                .collect(Collectors.toList());
+//    }
 
     // 강사 정보 수정
     @Transactional

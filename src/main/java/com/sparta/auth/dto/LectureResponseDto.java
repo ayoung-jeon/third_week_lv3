@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 public class LectureResponseDto {
     private Long lectureId;
     private String title;
-    private BigDecimal price;
+    private Long price;
     private String description;
     private LectureEnum category;
-    private Tutor tutor;
+//    private Tutor tutor;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
@@ -25,7 +25,7 @@ public class LectureResponseDto {
         this.price = lecture.getPrice();
         this.description = lecture.getDescription();
         this.category = lecture.getCategory();
-        this.tutor = lecture.getTutor();
+//        this.tutor = lecture.getTutor();
         this.createdAt = lecture.getCreatedAt();
         this.modifiedAt = lecture.getModifiedAt();
     }

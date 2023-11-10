@@ -4,8 +4,6 @@ import com.sparta.auth.dto.LectureRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 @Entity
 @Getter
 @Setter
@@ -22,7 +20,7 @@ public class Lecture extends Timestamped{
     private String title;
 
     @Column(nullable = false)
-    private BigDecimal price;
+    private Long price;
 
     @Column(nullable = false)
     private String description;
@@ -30,15 +28,15 @@ public class Lecture extends Timestamped{
     @Enumerated(EnumType.STRING)
     private LectureEnum category;
 
-    @ManyToOne
-    @JoinColumn(name = "tutor_id")
-    private Tutor tutor;
+//    @ManyToOne
+//    @JoinColumn(name = "tutor_id")
+//    private Tutor tutor;
 
-    public Lecture(LectureRequestDto requestDto, Tutor tutor) {
+    public Lecture(LectureRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.price = requestDto.getPrice();
         this.description = requestDto.getDescription();
         this.category = requestDto.getCategory();
-        this.tutor = tutor;
+//        this.tutor = tutor;
     }
 }

@@ -31,11 +31,16 @@ public class Tutor {
     @Column(nullable = false)
     private String bio;
 
-    public Tutor(TutorRequestDto requestDto) {
+    @ManyToOne
+    @JoinColumn(name = "lecture_id")
+    private Lecture lecture;
+
+    public Tutor(TutorRequestDto requestDto, Lecture lecture) {
         this.tutorName = requestDto.getTutorName();
         this.experienceYears = requestDto.getExperienceYears();
         this.company = requestDto.getCompany();
         this.phoneNumber = requestDto.getPhoneNumber();
         this.bio = requestDto.getBio();
+        this.lecture = lecture;
     }
 }
