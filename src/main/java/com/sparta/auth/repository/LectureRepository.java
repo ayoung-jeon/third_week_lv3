@@ -1,6 +1,7 @@
 package com.sparta.auth.repository;
 
 import com.sparta.auth.entity.Lecture;
+import com.sparta.auth.entity.LectureEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,6 +10,8 @@ import java.util.List;
 
 public interface LectureRepository extends JpaRepository<Lecture, Long> {
     boolean existsByTitle(String title);
+
+    List<Lecture> findByCategoryOrderByCreatedAtDesc(LectureEnum category);
 
 //    List<Lecture> findByTutorIdOrderByCreatedAtDesc(Long tutorId);
 

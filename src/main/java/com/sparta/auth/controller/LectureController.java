@@ -4,6 +4,7 @@ import com.sparta.auth.dto.LectureRequestDto;
 import com.sparta.auth.dto.LectureResponseDto;
 import com.sparta.auth.dto.TutorRequestDto;
 import com.sparta.auth.dto.TutorResponseDto;
+import com.sparta.auth.entity.LectureEnum;
 import com.sparta.auth.service.LectureService;
 import com.sparta.auth.service.TutorService;
 import jakarta.validation.Valid;
@@ -11,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -45,5 +48,14 @@ public class LectureController {
 
         LectureResponseDto responseDto = lectureService.updateLecture(lectureId, requestDto);
         return ResponseEntity.ok(responseDto);
+    }
+
+    // 카테고리별 강의 목록 조회
+    // 카테고리별 강의 목록 조회
+    @GetMapping("/lectures/category/{category}")
+    @PreAuthorize("hasAuthority('ROLE_STAFF') or hasAuthority('ROLE_MANAGER')")
+    public ResponseEntity<List<LectureResponseDto>> getLecturesByCategory(@PathVariable LectureEnum category) {
+        List<LectureResponseDto> lectures = lectureService.getLecturesByCategory(category);
+        return ResponseEntity.ok(lectures);
     }
 }

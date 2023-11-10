@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -65,19 +67,19 @@ public class LectureService {
         return new LectureResponseDto(savedLecture);
     }
 
-    // 선택한 강사 조회
+    // 선택한 강의 조회
     public LectureResponseDto getLecture(Long lectureId) {
         Lecture lecture = lectureRepository.findById(lectureId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 강의는 없습니다."));
         return new LectureResponseDto(lecture);
     }
 
-    // 강사 정보 수정
+    // 강의 정보 수정
     @Transactional
     public LectureResponseDto updateLecture(Long lectureId, LectureRequestDto requestDto) {
         // 기존 Tutor 조회
         Lecture lecture = lectureRepository.findById(lectureId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 강사는 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("해당 강의는 없습니다."));
 
         // 수정 사항 반영
         lecture.setTitle(requestDto.getTitle());
@@ -92,5 +94,12 @@ public class LectureService {
         return new LectureResponseDto(updatedLecture);
     }
 
-
+    // 카테고리별 강의 조회
+    @Transactional(readOnly = true)
+    public List<LectureResponseDto> getLecturesByCategory(LectureEnum category) {
+        List<Lecture> lectures = lectureRepository.findByCategoryOrderByCreatedAtDesc(category);
+        return lectures.stream()
+                .map(LectureResponseDto::new)
+                .collect(Collectors.toList());
+    }
 }
