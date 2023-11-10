@@ -24,5 +24,4 @@ public class TutorRequestDto {
 
     @NotBlank
     private String bio;
-
 }

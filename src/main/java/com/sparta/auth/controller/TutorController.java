@@ -1,18 +1,12 @@
 package com.sparta.auth.controller;
 
-import com.sparta.auth.dto.ProductRequestDto;
 import com.sparta.auth.dto.TutorRequestDto;
 import com.sparta.auth.dto.TutorResponseDto;
-import com.sparta.auth.entity.UserRoleEnum;
-import com.sparta.auth.security.UserDetailsImpl;
 import com.sparta.auth.service.TutorService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -40,6 +34,7 @@ public class TutorController {
         return tutorService.getTutor(tutorId);
     }
 
+    // 강사 정보 수정
     @PutMapping("/tutor/{tutorId}")
     @PreAuthorize("hasAuthority('ROLE_MANAGER')")
     public ResponseEntity<TutorResponseDto> updateTutor(
